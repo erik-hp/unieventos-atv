@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/// Formulário de inscrição rápida.
+///
+/// Ele fica separado da tela de detalhes para concentrar validação, controllers
+/// e limpeza dos campos em um lugar só.
 class InscricaoForm extends StatefulWidget {
   final ValueChanged<InscricaoDados> onInscricaoValida;
 
@@ -10,6 +14,7 @@ class InscricaoForm extends StatefulWidget {
 }
 
 class _InscricaoFormState extends State<InscricaoForm> {
+  // A chave permite validar todos os TextFormField de uma vez.
   final _formKey = GlobalKey<FormState>();
   final _nomeController = TextEditingController();
   final _emailController = TextEditingController();
@@ -17,6 +22,7 @@ class _InscricaoFormState extends State<InscricaoForm> {
 
   @override
   void dispose() {
+    // Controllers precisam ser descartados quando o widget sai da tela.
     _nomeController.dispose();
     _emailController.dispose();
     super.dispose();
@@ -24,6 +30,8 @@ class _InscricaoFormState extends State<InscricaoForm> {
 
   void _enviar() {
     if (_formKey.currentState!.validate()) {
+      // Se tudo estiver válido, a tela de detalhes recebe os dados e mostra o
+      // SnackBar de sucesso.
       widget.onInscricaoValida(
         InscricaoDados(
           nome: _nomeController.text.trim(),
@@ -53,6 +61,7 @@ class _InscricaoFormState extends State<InscricaoForm> {
             ),
             textInputAction: TextInputAction.next,
             validator: (value) {
+              // Nome vazio bloqueia o envio, como o enunciado pede.
               if (value == null || value.trim().isEmpty) {
                 return 'Informe seu nome.';
               }
@@ -69,6 +78,8 @@ class _InscricaoFormState extends State<InscricaoForm> {
             keyboardType: TextInputType.emailAddress,
             validator: (value) {
               final email = value?.trim() ?? '';
+              // Validação propositalmente simples: precisa conter "@",
+              // exatamente como foi pedido na atividade.
               if (email.isEmpty) {
                 return 'Informe seu e-mail.';
               }
@@ -91,6 +102,7 @@ class _InscricaoFormState extends State<InscricaoForm> {
                 const SizedBox(width: 10),
                 const Expanded(child: Text('Receber lembrete do evento')),
                 Switch.adaptive(
+                  // Uso de widget adaptativo dentro do formulário.
                   value: _receberLembrete,
                   onChanged: (value) {
                     setState(() {
@@ -117,6 +129,7 @@ class _InscricaoFormState extends State<InscricaoForm> {
   }
 }
 
+/// Objeto simples para transportar os dados preenchidos no formulário.
 class InscricaoDados {
   final String nome;
   final String email;

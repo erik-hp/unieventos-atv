@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../models/evento.dart';
 
+/// Área visual do topo da tela de detalhes.
+///
+/// Aqui usei Stack para combinar imagem, degradê e textos. Isso ajuda o app a
+/// parecer mais acabado e também demonstra layout composto, como a atividade
+/// solicita.
 class EventoHero extends StatelessWidget {
   final Evento evento;
 
@@ -17,6 +22,7 @@ class EventoHero extends StatelessWidget {
           width: double.infinity,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
+            // Fallback para manter a tela informativa mesmo sem internet.
             return Container(
               height: 220,
               width: double.infinity,
@@ -30,6 +36,7 @@ class EventoHero extends StatelessWidget {
           },
         ),
         Positioned.fill(
+          // Degradê usado para o texto continuar legível sobre qualquer imagem.
           child: DecoratedBox(
             decoration: BoxDecoration(
               gradient: LinearGradient(

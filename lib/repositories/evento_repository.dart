@@ -1,14 +1,24 @@
 import '../models/evento.dart';
 
+/// Fonte de dados fake da aplicação.
+///
+/// Em vez de escrever 50 eventos manualmente na tela, concentrei a geração aqui.
+/// Isso deixa a interface mais limpa e simula como seria buscar dados de outro
+/// lugar no futuro, como uma API ou banco de dados.
 class EventoRepository {
   static const int totalEventosMock = 50;
 
   const EventoRepository();
 
+  /// Gera os 50 eventos exigidos no desafio usando List.generate.
   List<Evento> listarEventos() {
     return List.generate(totalEventosMock, _gerarEvento);
   }
 
+  /// Transforma cada posição da lista em um evento diferente.
+  ///
+  /// O operador % alterna entre palestra, workshop e hackathon de forma simples
+  /// e previsível, sem precisar repetir muito código.
   Evento _gerarEvento(int index) {
     final id = index + 1;
     final tipo = index % 3;
@@ -55,6 +65,7 @@ class EventoRepository {
     );
   }
 
+  /// Locais reaproveitados no mock para dar variedade aos cards.
   static const List<String> _locais = [
     'Auditório Central',
     'Laboratório de Inovação',

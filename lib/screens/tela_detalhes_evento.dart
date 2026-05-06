@@ -5,9 +5,14 @@ import '../widgets/evento_hero.dart';
 import '../widgets/evento_info_card.dart';
 import '../widgets/inscricao_form.dart';
 
+/// Tela de detalhes de um evento.
+///
+/// Ela recebe o objeto Evento da tela principal e mostra os dados completos,
+/// além do formulário de inscrição rápida.
 class TelaDetalhesEvento extends StatelessWidget {
   const TelaDetalhesEvento({super.key});
 
+  /// Feedback simples para o aluno saber que a inscrição foi registrada.
   void _mostrarSucesso(BuildContext context, Evento evento) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -19,6 +24,7 @@ class TelaDetalhesEvento extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Extração do argumento enviado por Navigator.pushNamed.
     final evento = ModalRoute.of(context)!.settings.arguments as Evento;
 
     return Scaffold(

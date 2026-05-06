@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../models/evento.dart';
 import 'evento_icon_helper.dart';
 
+/// Card usado na lista principal.
+///
+/// Ele atende ao requisito de usar Card com ListTile e deixa o evento fácil de
+/// escanear: imagem, título, categoria, data, local e coração de favorito.
 class EventoCard extends StatelessWidget {
   final Evento evento;
   final bool favoritado;
@@ -38,6 +42,7 @@ class EventoCard extends StatelessWidget {
           ],
         ),
         trailing: IconButton(
+          // O ícone muda de cor e formato conforme o estado recebido da tela.
           tooltip: favoritado ? 'Remover dos favoritos' : 'Favoritar evento',
           icon: Icon(
             favoritado ? Icons.favorite : Icons.favorite_border,
@@ -51,6 +56,10 @@ class EventoCard extends StatelessWidget {
   }
 }
 
+/// Miniatura com imagem do evento e ícone da categoria.
+///
+/// O Stack permite colocar o ícone pequeno por cima da foto, dando uma leitura
+/// rápida do tipo de evento.
 class _EventoThumbnail extends StatelessWidget {
   final Evento evento;
 
@@ -69,6 +78,8 @@ class _EventoThumbnail extends StatelessWidget {
             height: 58,
             fit: BoxFit.cover,
             errorBuilder: (context, error, stackTrace) {
+              // Se a imagem online não carregar, mostramos um fallback simples
+              // para não deixar o card quebrado.
               return Container(
                 width: 58,
                 height: 58,

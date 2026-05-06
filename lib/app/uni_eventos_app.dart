@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import '../screens/tela_detalhes_evento.dart';
 import '../screens/tela_principal.dart';
 
+/// Classe raiz do UniEventos.
+///
+/// Aqui ficam as configurações que valem para o app inteiro: título, rotas e
+/// tema. Deixar isso centralizado facilita a leitura e evita repetição.
 class UniEventosApp extends StatelessWidget {
   const UniEventosApp({super.key});
 
@@ -12,6 +16,7 @@ class UniEventosApp extends StatelessWidget {
       title: 'UniEventos',
       debugShowCheckedModeBanner: false,
       initialRoute: AppRoutes.principal,
+      // Rotas nomeadas, exatamente como o enunciado pediu.
       routes: {
         AppRoutes.principal: (context) => const TelaPrincipal(),
         AppRoutes.detalhes: (context) => const TelaDetalhesEvento(),
@@ -21,6 +26,10 @@ class UniEventosApp extends StatelessWidget {
   }
 }
 
+/// Nomes das rotas usados pela navegação.
+///
+/// Preferi constantes para evitar erros de digitação em strings como
+/// "/detalhes".
 class AppRoutes {
   static const principal = '/';
   static const detalhes = '/detalhes';
@@ -28,6 +37,10 @@ class AppRoutes {
   const AppRoutes._();
 }
 
+/// Tema visual do aplicativo.
+///
+/// A cor azul foi escolhida para passar uma identidade universitária mais
+/// sóbria e consistente.
 class AppTheme {
   static const Color azulUniversitario = Color(0xFF0B3D91);
 

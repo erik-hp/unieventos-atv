@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+/// Bloco de informação usado na tela de detalhes.
+///
+/// Serve para destacar dados curtos como data e local, sem misturar tudo no
+/// parágrafo de descrição.
 class EventoInfoCard extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -15,6 +19,7 @@ class EventoInfoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // Altura mínima evita que os cards fiquem desalinhados quando o texto muda.
       constraints: const BoxConstraints(minHeight: 92),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
